@@ -341,3 +341,6 @@ SELECT `name` FROM `departments` ORDER BY `name`;
 SELECT `first_name`, `last_name`, `job_title`, `salary` FROM `employees` ORDER BY `salary` DESC;
 
 -- 17 --
+UPDATE `employees`
+SET `salary` = `salary` + `salary` * 0.10;
+SELECT `salary` FROM `employees`;
