@@ -83,3 +83,7 @@ FROM `employees`
 WHERE `department_id` = 4 AND `salary` > 1000 
 ORDER BY `id`;
 
+-- 6 --
+DELETE FROM `employees`
+WHERE `department_id` = 1 OR `department_id` = 2;
+SELECT * FROM `employees` ORDER BY `id`;
