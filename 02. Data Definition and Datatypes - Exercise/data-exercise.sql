@@ -331,3 +331,8 @@ SELECT * FROM `departments`;
 SELECT * FROM `employees`;
 
 -- 15 --
+SELECT * FROM `towns` ORDER BY `name`;
+SELECT * FROM `departments` ORDER BY `name`;
+SELECT * FROM `employees` ORDER BY `salary` DESC;
+
+-- 16 --
