@@ -166,10 +166,10 @@ USE `car_rental`;
 CREATE TABLE `categories` (
     `id` INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
     `category` VARCHAR(255) NOT NULL UNIQUE,
-    `daily_rate` DOUBLE(6 , 2 ),
-    `weekly_rate` DOUBLE(6 , 2 ),
-    `monthly_rate` DOUBLE(6 , 2 ),
-    `weekend_rate` DOUBLE(6 , 2 )
+    `daily_rate` DOUBLE,
+    `weekly_rate` DOUBLE,
+    `monthly_rate` DOUBLE,
+    `weekend_rate` DOUBLE
 );
  
 CREATE TABLE `cars` (
@@ -216,8 +216,8 @@ CREATE TABLE `rental_orders` (
     `start_date` DATE,
     `end_date` DATE,
     `total_days` INT,
-    `rate_applied` DOUBLE(6 , 2 ),
-    `tax_rate` DOUBLE(6 , 2 ),
+    `rate_applied` DOUBLE,
+    `tax_rate` DOUBLE,
     `order_status` VARCHAR(255),
     `notes` VARCHAR(255)
 );
@@ -319,8 +319,15 @@ VALUES (1, 'Engineering'), (2, 'Sales'), (3, 'Marketing'), (4, 'Software Develop
 
 INSERT INTO `employees` (`first_name`, `middle_name`, `last_name`, `job_title`, `department_id`, `hire_date`, `salary`)
 VALUES
-('Ivan', 'Ivanov', 'Ivanov', '.NET Developer', 4, 01/02/2013, 3500.00),
-('Petar', 'Petrov', 'Petrov', 'Senior Engineer', 1,	02/03/2004, 4000.00),
-('Maria', 'Petrova', 'Ivanova', 'Intern', 5, 28/08/2016, 525.25),
-('Georgi', 'Terziev', 'Ivanov',	'CEO',	2, 09/12/2007, 3000.00),
-('Peter', 'Pan', 'Pan',	'Intern', 3,	28/08/2016,	599.88);
+('Ivan', 'Ivanov', 'Ivanov', '.NET Developer', 4, '2013-02-01', 3500.00),
+('Petar', 'Petrov', 'Petrov', 'Senior Engineer', 1,	'2004-03-02', 4000.00),
+('Maria', 'Petrova', 'Ivanova', 'Intern', 5, '2016-08-28', 525.25),
+('Georgi', 'Terziev', 'Ivanov',	'CEO',	2, '2007-12-09', 3000.00),
+('Peter', 'Pan', 'Pan',	'Intern', 3,	'2016-08-28',	599.88);
+
+-- 14 --
+SELECT * FROM `towns`;
+SELECT * FROM `departments`;
+SELECT * FROM `employees`;
+
+-- 15 --
