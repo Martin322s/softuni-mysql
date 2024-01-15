@@ -22,3 +22,8 @@ WHERE `t`.`name` IN (
 )
 ORDER BY `town_id`, `address_id`;
 
+-- 3 --
+SELECT `employee_id`, `first_name`, `last_name`, `department_id`, `salary`
+FROM `employees`
+WHERE `manager_id` IS NULL;
+
