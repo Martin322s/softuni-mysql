@@ -10,3 +10,15 @@ ON `e`.`employee_id` = `d`.`manager_id`
 ORDER BY `e`.`employee_id`
 LIMIT 5;
 
+-- 2 --
+SELECT `t`.`town_id`, `name`, `address_text`
+FROM `addresses` AS `a`
+JOIN `towns` AS `t`
+ON `a`.`town_id` = `t`.`town_id` 
+WHERE `t`.`name` IN (
+	SELECT `name`
+	FROM `towns`
+	WHERE `name` IN ('Sofia', 'San Francisco', 'Carnation')
+)
+ORDER BY `town_id`, `address_id`;
+
