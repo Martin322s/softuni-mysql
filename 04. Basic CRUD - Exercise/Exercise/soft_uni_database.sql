@@ -1688,3 +1688,18 @@ SELECT `first_name`, `last_name`, `salary`
 FROM `employees` 
 ORDER BY `employee_id`;
 
+-- 4 --
+SELECT `first_name`, `middle_name`, `last_name` 
+FROM `employees` 
+ORDER BY `employee_id`;
+
+-- 5 --
+SELECT 
+	CONCAT(
+		`first_name`, 
+        '.', 
+        `last_name`, 
+        '@softuni.bg'
+	) AS `full_email_address` 
+FROM `employees`;
+
