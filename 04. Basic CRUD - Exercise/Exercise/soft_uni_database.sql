@@ -1731,3 +1731,20 @@ FROM `employees`
 WHERE `salary` IN (25000, 14000, 12500, 23600) 
 ORDER BY `employee_id`;
 
+-- 10 --
+SELECT `first_name`, `last_name` 
+FROM `employees` 
+WHERE `manager_id` IS NULL;
+
+-- 11 --
+SELECT `first_name`, `last_name`, `salary`
+FROM `employees`
+WHERE `salary` > 50000
+ORDER BY `salary` DESC;
+
+-- 12 --
+SELECT `first_name`, `last_name`
+FROM `employees`
+ORDER BY `salary` DESC
+LIMIT 5;
+
