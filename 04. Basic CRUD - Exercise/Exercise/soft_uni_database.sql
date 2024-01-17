@@ -1703,3 +1703,13 @@ SELECT
 	) AS `full_email_address` 
 FROM `employees`;
 
+-- 6 --
+SELECT DISTINCT `salary` 
+FROM `employees`;
+
+-- 7 --
+SELECT * 
+FROM `employees` 
+WHERE `job_title` = 'Sales Representative'
+ORDER BY `employee_id`;
+
