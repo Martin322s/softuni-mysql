@@ -1748,3 +1748,24 @@ FROM `employees`
 ORDER BY `salary` DESC
 LIMIT 5;
 
+-- 13 --
+SELECT `first_name`, `last_name`
+FROM `employees`
+WHERE `department_id` NOT IN (4);
+
+-- 14 --
+SELECT *
+FROM `employees`
+ORDER BY 
+	`salary` DESC, 
+    `first_name` ASC, 
+    `last_name` DESC, 
+    `middle_name` ASC, 
+    `employee_id`;
+
+-- 15 --
+CREATE VIEW `v_employees_salaries` AS
+	SELECT `first_name`, `last_name`, `salary`
+    FROM `employees`;
+SELECT * FROM `v_employees_salaries`;
+
