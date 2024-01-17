@@ -1713,3 +1713,21 @@ FROM `employees`
 WHERE `job_title` = 'Sales Representative'
 ORDER BY `employee_id`;
 
+-- 8 --
+SELECT `first_name`, `last_name`, `job_title` 
+FROM `employees` 
+WHERE `salary` >= 20000 AND `salary` <= 30000 
+ORDER BY `employee_id`;
+
+-- 9 --
+SELECT 
+	CONCAT_WS(
+		' ', 
+        `first_name`, 
+        `middle_name`, 
+        `last_name`
+	) AS `Full Name` 
+FROM `employees` 
+WHERE `salary` IN (25000, 14000, 12500, 23600) 
+ORDER BY `employee_id`;
+
