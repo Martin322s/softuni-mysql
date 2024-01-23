@@ -94,3 +94,8 @@ SELECT
     ABS(DATEDIFF(`born`, `died`)) AS `Days Lived`
 FROM `authors`;
 
+-- 5 --
+SELECT `title`
+FROM `books`
+WHERE `title` LIKE '%Harry Potter%'
+ORDER BY `id`;
