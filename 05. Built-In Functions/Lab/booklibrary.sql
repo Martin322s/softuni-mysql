@@ -84,3 +84,13 @@ WHERE SUBSTRING(title, 1, 4) = 'The ';
 SELECT ROUND(SUM(`cost`), 2) 
 FROM `books`;
 
+-- 4 --
+SELECT 
+	CONCAT_WS(
+		' ', 
+        `first_name`, 
+        `last_name`
+	) AS `Full Name`, 
+    ABS(DATEDIFF(`born`, `died`)) AS `Days Lived`
+FROM `authors`;
+
