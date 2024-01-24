@@ -26,3 +26,10 @@ INSERT INTO orders (id, product_name, order_date) VALUES (13, 'Toyymatddoehys', 
 INSERT INTO orders (id, product_name, order_date) VALUES (14, 'Tom443atoes', '20151215');
 INSERT INTO orders (id, product_name, order_date) VALUES (15, 'Tomat65434foe23gfhgsPep', '20151004');
 
+-- 16 --
+SELECT 
+	product_name, 
+    order_date,
+	DATE_ADD(order_date, INTERVAL 3 DAY) AS 'pay_due',
+	DATE_ADD(order_date, INTERVAL 1 MONTH) AS 'deliver_due'
+FROM orders;
