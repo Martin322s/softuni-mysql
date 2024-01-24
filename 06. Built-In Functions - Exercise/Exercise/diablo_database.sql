@@ -4107,3 +4107,10 @@ INSERT INTO `user_game_items` (`item_id`, `user_game_id`) VALUES
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 
+-- 12 --
+SELECT `name`, DATE_FORMAT(`start`, '%Y-%m-%d') AS `start` 
+FROM `games`
+WHERE YEAR(`start`) IN (2011,2012)
+ORDER BY `start`, `name`
+LIMIT 50;
+
