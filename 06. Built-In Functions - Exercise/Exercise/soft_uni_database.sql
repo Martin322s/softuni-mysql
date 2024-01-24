@@ -1697,6 +1697,12 @@ FROM `employees`
 WHERE LOWER(`job_title`) NOT LIKE '%engineer%'
 ORDER BY `employee_id`;
 
+-- 5 --
+SELECT `name`
+FROM `towns`
+WHERE LENGTH(`name`) IN (5, 6)
+ORDER BY `name`;
+
 SELECT `town_id`, `name`
 FROM `towns`
 WHERE SUBSTRING(LOWER(`name`), 1, 1) IN ('m', 'k', 'e', 'b')
