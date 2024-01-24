@@ -4114,3 +4114,8 @@ WHERE YEAR(`start`) IN (2011,2012)
 ORDER BY `start`, `name`
 LIMIT 50;
 
+-- 13 --
+SELECT `user_name`, SUBSTRING(`email`, LOCATE('@', `email`) + 1) AS `email_provider`
+FROM `users`
+ORDER BY `email_provider`, `user_name`;
+
