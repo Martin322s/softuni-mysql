@@ -1691,6 +1691,12 @@ FROM `employees`
 WHERE `department_id` IN (3, 10) AND YEAR(hire_date) BETWEEN 1995 AND 2005
 order by `employee_id`;
 
+-- 4 --
+SELECT `first_name`, `last_name`
+FROM `employees`
+WHERE LOWER(`job_title`) NOT LIKE '%engineer%'
+ORDER BY `employee_id`;
+
 SELECT `town_id`, `name`
 FROM `towns`
 WHERE SUBSTRING(LOWER(`name`), 1, 1) IN ('m', 'k', 'e', 'b')
