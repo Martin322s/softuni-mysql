@@ -801,3 +801,9 @@ INSERT INTO `rivers` (`id`, `river_name`, `length`, `drainage_area`, `average_di
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 
+-- 10 --
+SELECT `country_name`, `iso_code`
+FROM `countries`
+WHERE LOWER(`country_name`) LIKE '%a%a%a%'
+ORDER BY `iso_code`;
+
