@@ -1685,6 +1685,12 @@ FROM `employees`
 WHERE LOWER(`last_name`) LIKE '%ei%'
 ORDER BY `employee_id`;
 
+-- 3 --
+SELECT `first_name`
+FROM `employees`
+WHERE `department_id` IN (3, 10) AND YEAR(hire_date) BETWEEN 1995 AND 2005
+order by `employee_id`;
+
 SELECT `town_id`, `name`
 FROM `towns`
 WHERE SUBSTRING(LOWER(`name`), 1, 1) IN ('m', 'k', 'e', 'b')
