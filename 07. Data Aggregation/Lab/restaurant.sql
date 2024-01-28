@@ -15,3 +15,9 @@ FROM `employees`
 GROUP BY `department_id`
 HAVING `Min salary` > 800;
 
+-- 4 --
+SELECT COUNT(`category_id`) AS `Appetizers Count`
+FROM `products`
+WHERE `category_id` = 2 AND `price` > 8
+GROUP BY `category_id`;
+
