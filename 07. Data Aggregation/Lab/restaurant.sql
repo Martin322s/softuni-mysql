@@ -9,3 +9,9 @@ FROM `employees`
 GROUP BY `department_id` 
 ORDER BY `department_id`;
 
+-- 3 --
+SELECT `department_id`, ROUND(MIN(`salary`), 2) AS `Min salary`
+FROM `employees`
+GROUP BY `department_id`
+HAVING `Min salary` > 800;
+
