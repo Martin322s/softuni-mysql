@@ -93,3 +93,31 @@ VALUES
 	(2, 102),
 	(2, 103);
     
+-- 4 --
+CREATE TABLE `teachers` (
+	`teacher_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(50) NOT NULL,
+    `manager_id` INT
+);
+
+INSERT INTO `teachers`(`teacher_id`, `name`, `manager_id`)
+VALUES
+	(101, 'John', NULL),	
+	(102, 'Maya', 106),
+	(103, 'Silvia', 106),
+	(104, 'Ted', 105),
+	(105, 'Mark', 101),
+	(106, 'Greta', 101);
+
+ALTER TABLE `teachers`
+ADD CONSTRAINT `fk_teacher_manager_id`
+	FOREIGN KEY (`manager_id`)
+	REFERENCES `teachers`(`teacher_id`);
+
+-- 5 --
+SELECT `mountain_range`, `peak_name`, `elevation`
+FROM `mountains` AS `m`
+JOIN `peaks` AS `p`
+ON `m`.`id` = `p`.`mountain_id`
+WHERE `m`.`mountain_range` = 'Rila'
+ORDER BY `elevation` DESC;
