@@ -30,3 +30,23 @@ CREATE TABLE `customers` (
     REFERENCES `cities`(`city_id`)
 );
 
+CREATE TABLE `orders` (
+	`order_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `customer_id` INT NOT NULL,
+    CONSTRAINT `fk_customer_id`
+    FOREIGN KEY (`customer_id`)
+    REFERENCES `customers`(`customer_id`)
+);
+
+CREATE TABLE `order_items` (
+	`order_id` INT NOT NULL,
+    `item_id` INT NOT NULL,
+    CONSTRAINT `pk_order_items` 
+	PRIMARY KEY (`order_id` , `item_id`),
+    CONSTRAINT `fk_order_items_orders` 
+	FOREIGN KEY (`order_id`)
+	REFERENCES `orders` (`order_id`),
+    CONSTRAINT `fk_order_items_items` 
+	FOREIGN KEY (`item_id`)
+	REFERENCES `items` (`item_id`)
+);
