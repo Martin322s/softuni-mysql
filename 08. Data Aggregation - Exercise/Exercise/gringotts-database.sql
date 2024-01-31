@@ -6,3 +6,16 @@ FROM `wizzard_deposits`;
 SELECT MAX(`magic_wand_size`) AS `longest_magic_wand`
 FROM `wizzard_deposits`;
 
+-- 3 --
+SELECT `deposit_group`, MAX(`magic_wand_size`) AS `longest_magic_wand`
+FROM `wizzard_deposits`
+GROUP BY `deposit_group`
+ORDER BY `longest_magic_wand`, `deposit_group`;
+
+-- 4 --
+SELECT `deposit_group`
+FROM `wizzard_deposits`
+GROUP BY `deposit_group`
+HAVING MIN(`magic_wand_size`)
+LIMIT 1;
+
