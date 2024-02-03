@@ -44,3 +44,21 @@ ON `e`.`department_id` = `d`.`department_id`
 WHERE `d`.`name` = 'Finance' 
 ORDER BY `first_name`, `salary`;
 
+-- 3 --
+DELIMITER $
+
+CREATE PROCEDURE usp_raise_salary_by_id(id INT)
+BEGIN
+	IF ((SELECT `employee_id` FROM `employees` WHERE `employee_id` = id) IS NOT NULL) THEN
+		UPDATE `employees`
+		SET `salary` = `salary` * 1.05
+		WHERE `employee_id` = id;
+	END IF;
+END $
+
+DELIMITER ;
+
+CALL usp_raise_salary_by_id(17);
+
+SELECT `salary` FROM `employees` WHERE `employee_id` = 17;
+
