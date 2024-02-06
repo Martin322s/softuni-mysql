@@ -28,3 +28,18 @@ DELIMITER ;
 
 CALL usp_get_employees_salary_above(45000);
 
+-- 3 --
+DELIMITER $
+
+CREATE PROCEDURE usp_get_towns_starting_with(symbol VARCHAR(50))
+BEGIN
+	SELECT `name`
+    FROM `towns`
+    WHERE LEFT(LOWER(`name`), LENGTH(symbol)) = LOWER(symbol)
+    ORDER BY `name`;
+END $
+
+DELIMITER ;
+
+CALL usp_get_towns_starting_with('b');
+
