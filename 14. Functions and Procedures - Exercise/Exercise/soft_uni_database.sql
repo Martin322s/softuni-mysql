@@ -62,3 +62,25 @@ DELIMITER ;
 
 CALL usp_get_employees_from_town('Sofia');
 
+-- 5 --
+DELIMITER $
+
+CREATE FUNCTION ufn_get_salary_level(salary_input INT) RETURNS VARCHAR(10)
+DETERMINISTIC
+BEGIN
+	DECLARE salary_level VARCHAR(10);
+    IF salary_input < 30000 THEN 
+		SET salary_level = "Low";
+	ELSEIF salary_input >= 30000 AND salary_input <= 50000 THEN 
+		SET salary_level = "Average";
+	ELSE
+		SET salary_level = "High";
+    END IF;
+    RETURN salary_level;
+END $
+
+DELIMITER ;
+
+SELECT `salary`, ufn_get_salary_level(`salary`) AS `salary_level`
+FROM `employees`;
+
