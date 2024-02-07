@@ -177,3 +177,22 @@ END $
 
 DELIMITER ;
 
+-- 12 --
+DELIMITER $
+
+CREATE PROCEDURE usp_deposit_money(account_id INT, money_amount DECIMAL(19, 4))
+BEGIN
+	START TRANSACTION;
+	IF((SELECT count(`a`.`id`) 
+    FROM `accounts` AS `a` 
+    WHERE `a`.`id` = account_id) != 1 OR money_amount < 0) THEN
+	ROLLBACK;
+	ELSE
+		UPDATE `accounts`
+        SET `balance` = `balance` + `money_amount`
+		WHERE `accounts`.`id` = account_id;
+	END IF; 
+END $
+
+DELIMITER ;
+
