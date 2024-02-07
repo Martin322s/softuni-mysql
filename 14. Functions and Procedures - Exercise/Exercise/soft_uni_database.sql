@@ -266,3 +266,30 @@ END $
 
 DELIMITER ;
  
+-- 16 --
+CREATE TABLE `notification_emails` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`recipient` INT, 
+	`subject` TEXT, 
+	`body` TEXT
+);
+
+DELIMITER $
+
+CREATE TRIGGER log_logs_trigger AFTER INSERT ON `logs`
+FOR EACH ROW
+BEGIN
+	INSERT INTO `notification_emails` (`recipient`, `subject`, `body`)
+	SELECT 
+		account_id, 
+        CONCAT('Balance change for account: ', account_id), 
+        CONCAT(
+			'On ', 
+            DATE_FORMAT(NOW(), '%b %d %Y at %r'), 
+            ' your balance was changed from ', 
+            ROUND(old_sum, 2), ' to ', ROUND(new_sum, 2)
+		)
+	FROM `logs` ORDER BY log_id DESC LIMIT 1; 
+END $
+
+DELIMITER ;
