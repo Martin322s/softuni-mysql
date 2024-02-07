@@ -97,3 +97,26 @@ END $
 
 DELIMITER ;
 
+-- 7 --
+DELIMITER $
+ 
+CREATE FUNCTION ufn_is_word_comprised(set_of_letters VARCHAR(50), word VARCHAR(50)) RETURNS TINYINT
+DETERMINISTIC
+BEGIN
+	DECLARE i INT;
+	SET i := 1;
+	loop1: LOOP
+		IF (LOCATE(SUBSTR(word, i, 1), set_of_letters) = 0) THEN
+			RETURN 0;
+			LEAVE loop1;
+		END IF;
+		SET i := i + 1;
+		IF (i = CHAR_LENGTH(word) + 1) THEN
+			LEAVE loop1;
+		END IF;
+		END LOOP loop1;
+		RETURN 1;
+END $
+
+DELIMITER ;
+
