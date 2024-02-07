@@ -158,3 +158,22 @@ RETURNS DECIMAL(19, 4)
 DETERMINISTIC
 RETURN `sum`* POW(1 + interest_rate, years);
 
+-- 11 --
+DELIMITER $
+
+CREATE PROCEDURE usp_calculate_future_value_for_account(id INT, interest_rate DECIMAL(19, 4))
+DETERMINISTIC
+BEGIN
+	SELECT 
+		`a`.`id`, 
+        `first_name`, 
+        `last_name`, 
+        `balance` AS `current_balance`, 
+        ufn_calculate_future_value(balance, interest_rate, 5) AS `balance_in_5_years`
+	FROM `accounts` AS `a`
+	JOIN `account_holders` AS `ah` ON `a`.`account_holder_id` = `ah`.`id`
+	WHERE `a`.`id` = `id`;
+END $
+
+DELIMITER ;
+
