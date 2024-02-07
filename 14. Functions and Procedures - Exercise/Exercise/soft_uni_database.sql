@@ -132,3 +132,23 @@ END $
 
 DELIMITER ;
 
+-- 9 --
+DELIMITER $
+
+CREATE PROCEDURE usp_get_holders_with_balance_higher_than(more_balance DECIMAL(19, 4))
+DETERMINISTIC
+BEGIN
+	SELECT `first_name`, `last_name`
+	FROM `account_holders` AS `ah1`
+	WHERE (
+			SELECT SUM(`balance`) 
+			FROM `account_holders` AS `ah`
+			JOIN `accounts` AS `a` 
+            ON `ah`.`id` = `a`.`account_holder_id`
+			WHERE `ah`.`id` = `ah1`.`id`
+			GROUP BY `ah`.`id`) > `more_balance`
+			ORDER BY `ah1`.`id`;
+END $
+
+DELIMITER ;
+
