@@ -152,3 +152,9 @@ END $
 
 DELIMITER ;
 
+-- 10 --
+CREATE FUNCTION ufn_calculate_future_value(`sum` DECIMAL(19, 4), interest_rate DOUBLE, years INT)
+RETURNS DECIMAL(19, 4)
+DETERMINISTIC
+RETURN `sum`* POW(1 + interest_rate, years);
+
