@@ -95,3 +95,7 @@ SELECT
 FROM `actors`
 WHERE `id` <= 10;
 
+UPDATE `movies_additional_info` AS `mi`
+SET `runtime` = `runtime` - 10
+WHERE `mi`.`id` >= 15 AND `mi`.`id` <= 25;
+
