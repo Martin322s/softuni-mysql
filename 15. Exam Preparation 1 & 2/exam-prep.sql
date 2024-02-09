@@ -135,3 +135,20 @@ GROUP BY `name`
 HAVING `movies_count` >= 7
 ORDER BY `name` DESC;
 
+SELECT 
+	`title`, 
+    CASE 
+		WHEN (`rating` <= 4) THEN 'poor'
+        WHEN (`rating` > 4 AND `rating` <= 7) THEN 'good'
+        WHEN (`rating` > 7) THEN 'excellent'
+	END AS `rating`,
+	CASE 
+		WHEN (`has_subtitles` = 1) THEN 'english'
+        ELSE '-'
+	END AS `subtitles`,
+    `budget`
+FROM `movies` AS `m`
+JOIN `movies_additional_info` AS `mi`
+ON `m`.`movie_info_id` = `mi`.`id`
+ORDER BY `budget` DESC;
+
