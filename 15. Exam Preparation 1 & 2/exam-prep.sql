@@ -102,3 +102,9 @@ WHERE `mi`.`id` >= 15 AND `mi`.`id` <= 25;
 DELETE FROM `countries`
 WHERE `id` NOT IN (SELECT `country_id` FROM `movies`);
 
+-- 03. Querying
+
+SELECT `id`, `name`, `continent`, `currency`
+FROM `countries`
+ORDER BY `currency` DESC, `id`;
+
