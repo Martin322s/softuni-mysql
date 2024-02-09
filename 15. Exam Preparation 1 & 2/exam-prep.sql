@@ -108,3 +108,11 @@ SELECT `id`, `name`, `continent`, `currency`
 FROM `countries`
 ORDER BY `currency` DESC, `id`;
 
+SELECT `mi`.`id`, `title`, `runtime`, `budget`, `release_date`
+FROM `movies_additional_info` AS `mi`
+JOIN `movies` AS `m`
+ON `mi`.`id` = `m`.`movie_info_id`
+WHERE YEAR(`release_date`) >= 1996 AND YEAR(`release_date`) <= 1999
+ORDER BY `runtime`, `id`
+LIMIT 20;
+
