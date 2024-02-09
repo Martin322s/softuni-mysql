@@ -183,3 +183,33 @@ DELIMITER ;
 SELECT udf_actor_history_movies_count('Stephan Lundberg')  AS 'history_movies';
 SELECT udf_actor_history_movies_count('Jared Di Batista')  AS 'history_movies';
 
+DELIMITER $
+
+CREATE PROCEDURE udp_award_movie(movie_title VARCHAR(50))
+BEGIN
+	CREATE TEMPORARY TABLE temp_actors_names
+	SELECT CONCAT(`first_name`, ' ', `last_name`) AS `full_name`, `awards`
+	FROM `actors` AS `a`
+	JOIN `movies_actors` AS `ma`
+	ON `a`.`id` = `ma`.`actor_id`
+	JOIN `movies` AS `m`
+	ON `ma`.`movie_id` = `m`.`id`
+	WHERE `m`.`title` = movie_title;
+    
+    UPDATE `actors`
+	SET `awards` = `awards` + 1
+	WHERE CONCAT(`first_name`, ' ', `last_name`) IN (SELECT full_name FROM temp_actors_names);
+    
+    DROP TEMPORARY TABLE IF EXISTS temp_actors_names;
+END $
+
+DELIMITER ;
+
+CALL udp_award_movie('Tea For Two');
+SELECT CONCAT(`first_name`, ' ', `last_name`) AS `full_name`, `awards`
+	FROM `actors` AS `a`
+	JOIN `movies_actors` AS `ma`
+	ON `a`.`id` = `ma`.`actor_id`
+	JOIN `movies` AS `m`
+	ON `ma`.`movie_id` = `m`.`id`
+	WHERE `m`.`title` = 'Tea For Two';
