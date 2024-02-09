@@ -116,3 +116,14 @@ WHERE YEAR(`release_date`) >= 1996 AND YEAR(`release_date`) <= 1999
 ORDER BY `runtime`, `id`
 LIMIT 20;
 
+SELECT 
+	CONCAT_WS(' ', `first_name`, `last_name`) AS `full_name`,
+	CONCAT(REVERSE(`last_name`), LENGTH(`last_name`), '@cast.com') AS `email`,
+	2022 - YEAR(`birthdate`) AS `age`,
+	`height`
+FROM `actors` AS `a`
+LEFT JOIN `movies_actors` AS `ma`
+ON `a`.`id` = `ma`.`actor_id`
+WHERE `ma`.`actor_id` IS NULL
+ORDER BY `height`;
+
