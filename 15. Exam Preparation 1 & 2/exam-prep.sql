@@ -127,3 +127,11 @@ ON `a`.`id` = `ma`.`actor_id`
 WHERE `ma`.`actor_id` IS NULL
 ORDER BY `height`;
 
+SELECT `name`, COUNT(`title`) AS `movies_count`
+FROM `countries` AS `c`
+JOIN `movies` AS `m`
+ON `c`.`id` = `m`.`country_id`
+GROUP BY `name`
+HAVING `movies_count` >= 7
+ORDER BY `name` DESC;
+
