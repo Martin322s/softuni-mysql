@@ -99,3 +99,6 @@ UPDATE `movies_additional_info` AS `mi`
 SET `runtime` = `runtime` - 10
 WHERE `mi`.`id` >= 15 AND `mi`.`id` <= 25;
 
+DELETE FROM `countries`
+WHERE `id` NOT IN (SELECT `country_id` FROM `movies`);
+
