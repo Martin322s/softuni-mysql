@@ -152,3 +152,34 @@ JOIN `movies_additional_info` AS `mi`
 ON `m`.`movie_info_id` = `mi`.`id`
 ORDER BY `budget` DESC;
 
+-- 04. Programmability
+
+DELIMITER $
+
+CREATE FUNCTION udf_actor_history_movies_count(full_name VARCHAR(50)) RETURNS INT
+DETERMINISTIC
+BEGIN
+	DECLARE result INT;
+    SET result = (
+		SELECT COUNT(CONCAT(`first_name`, ' ', `last_name`))
+		FROM `actors` AS `a`
+		JOIN `movies_actors` AS `ma`
+		ON `a`.`id` = `ma`.`actor_id`
+		JOIN `movies` AS `m`
+		ON `ma`.`movie_id` = `m`.`id`
+		JOIN `genres_movies` AS `ga`
+		ON `m`.`id` = `ga`.`movie_id`
+		JOIN `genres` AS `g`
+		ON `ga`.`genre_id` = `g`.`id`
+		WHERE `g`.`name` = 'history' 
+        AND CONCAT(`first_name`, ' ', `last_name`) = full_name
+    );
+    
+    RETURN result;
+END $
+
+DELIMITER ;
+
+SELECT udf_actor_history_movies_count('Stephan Lundberg')  AS 'history_movies';
+SELECT udf_actor_history_movies_count('Jared Di Batista')  AS 'history_movies';
+
