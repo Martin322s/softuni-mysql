@@ -302,3 +302,11 @@ ON `cp`.`country_id` = `c`.`id`
 WHERE `w`.`salary` > 5000 AND `w`.`age` < 50
 ORDER BY `country_code`;
 
+SELECT `name`, COUNT(`is_armed`) AS `armed_workers`
+FROM `preserves` AS `p`
+JOIN `workers` AS `w`
+ON `p`.`id` = `w`.`preserve_id`
+WHERE `is_armed` = 1
+GROUP BY `name`
+ORDER BY `armed_workers` DESC, `name`;
+
