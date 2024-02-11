@@ -256,3 +256,15 @@ INSERT INTO countries_preserves (country_id, preserve_id) VALUES
 (23,23),
 (24,24);
 
+-- 2. Insert
+INSERT INTO `preserves`(`name`, `latitude`, `longitude`, `area`, `type`, `established_on`)
+SELECT 
+	CONCAT(`name`, ' ', 'is in South Hemisphere') AS `name`,
+    `latitude`,
+    `longitude`,
+    (`id` * `area`) AS `area`,
+    LOWER(`type`) AS `type`,
+    `established_on`
+FROM `preserves`
+WHERE `latitude` < 0;
+
