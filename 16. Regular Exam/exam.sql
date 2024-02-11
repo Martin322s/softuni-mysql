@@ -277,3 +277,12 @@ WHERE `position_id` IN (5, 8, 11, 13);
 DELETE FROM `preserves`
 WHERE `established_on` IS NULL;
 
+-- 03. Querying
+SELECT 
+    CONCAT(`first_name`, ' ', `last_name`) AS `full_name`,
+    DATEDIFF('2024-01-01', `start_date`) AS `days_of_experience`
+FROM `workers`
+WHERE DATEDIFF('2024-01-01', `start_date`) > 5 * 365
+ORDER BY `days_of_experience` DESC
+LIMIT 10;
+
