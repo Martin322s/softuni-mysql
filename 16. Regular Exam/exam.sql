@@ -273,3 +273,7 @@ UPDATE `workers`
 SET `salary` = `salary` + 500
 WHERE `position_id` IN (5, 8, 11, 13);
 
+-- 4. Delete
+DELETE FROM `preserves`
+WHERE `established_on` IS NULL;
+
