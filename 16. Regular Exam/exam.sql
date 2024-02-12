@@ -333,3 +333,24 @@ SELECT
 FROM `preserves`
 ORDER BY `area` DESC;
 
+-- 04. Programmability
+DELIMITER $
+
+CREATE FUNCTION udf_average_salary_by_position_name (name VARCHAR(40)) RETURNS DOUBLE
+DETERMINISTIC
+BEGIN
+	DECLARE avg_salary DOUBLE;
+    SET avg_salary = (
+		SELECT ROUND(AVG(`salary`), 2)
+		FROM `workers` AS `w` 
+		JOIN `positions` AS `p` 
+		ON `w`.`position_id` = `p`.`id`
+		WHERE `p`.`name` = name
+		GROUP BY name
+    );
+    
+    RETURN avg_salary;
+END $
+
+DELIMITER ;
+
