@@ -354,3 +354,27 @@ END $
 
 DELIMITER ;
 
+DELIMITER $
+
+CREATE PROCEDURE udp_increase_salaries_by_country(country_name VARCHAR(40))
+BEGIN
+	CREATE TEMPORARY TABLE `temp_workers_names`
+    SELECT CONCAT_WS(' ', `first_name`, `last_name`) AS `full_name`
+	FROM `workers` AS `w`
+	JOIN `preserves` AS `p`
+	ON `w`.`preserve_id` = `p`.`id`
+	JOIN `countries_preserves` AS `cp`
+	ON `p`.`id` = `cp`.`preserve_id`
+	JOIN `countries` AS `c`
+	ON `cp`.`country_id` = `c`.`id`
+	WHERE `c`.`name` = country_name;
+    
+    UPDATE `workers`
+	SET `salary` = `salary` * 1.05
+    WHERE CONCAT(`first_name`, ' ', `last_name`) IN (SELECT * FROM `temp_workers_names`);
+    
+END $
+
+DELIMITER ;
+
+CALL udp_increase_salaries_by_country ('Germany');
